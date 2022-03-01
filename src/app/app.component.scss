@@ -1,0 +1,17 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.form {
+  alignment: center;
+}
+.title {
+  text-align: center;
+}
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
+  }
+}
+.error-msg {
+  color: red;
+  font-size: 16px;
+}

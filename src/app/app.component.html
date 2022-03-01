@@ -1,0 +1,67 @@
+<div>
+    <form class="form col-lg-6" [formGroup]="form" (ngSubmit)="submitForm()">
+        <h2 class="title">WiserCat frontend test work</h2>
+        <h5 class="title">(created by Oleg Grasman)</h5>
+
+        <app-messages *ngFor="let message of messages" [message]="message"></app-messages>
+
+        <div class="col-lg-12 mb-3 mt-3">
+            <label for="name" class="form-label col-lg-5">Name:</label>
+            <input type="text" class="form-control col-lg-7" ng-model-options="{updateOn: 'blur'}" id="name"
+                   placeholder="Enter name" formControlName="name">
+            <div *ngIf="(form.get('name').invalid && form.get('name').touched) || (form.get('name').pristine && isSubmitted)">
+                <small class="error-msg" *ngIf="form.get('name').errors?.['required']">
+                    Name field is required
+                </small>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mb-3">
+            <label for="surname" class="form-label col-lg-5">Surname:</label>
+            <input type="text" class="form-control col-lg-7" ng-model-options="{updateOn: 'blur'}" id="surname"
+                   placeholder="Enter surname" formControlName="surname">
+            <div *ngIf="(form.get('surname').invalid && form.get('surname').touched) || (form.get('surname').pristine && isSubmitted)">
+                <small class="error-msg" *ngIf="form.get('surname').errors?.['required']">
+                    Surname field is required
+                </small>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mb-3">
+            <label for="email" class="form-label col-lg-5">Email:</label>
+            <input type="text" class="form-control col-lg-7" ng-model-options="{updateOn: 'blur'}" id="email"
+                   placeholder="Enter email" formControlName="email">
+            <div *ngIf="(form.get('email').invalid && form.get('email').touched) || (form.get('email').pristine && isSubmitted)">
+                <small class="error-msg" *ngIf="form.get('email').errors?.['required']">
+                    Email field is required
+                </small>
+                <small class="error-msg" *ngIf="form.get('email').errors.email">
+                    "{{this.form.get('email').value}}" is not valid email address
+                </small>
+            </div>
+        </div>
+
+        <div class="col-lg-12 mb-3">
+            <label for="workingExperience" class="form-label col-lg-5">Working experience:</label>
+            <input type="text" class="form-control col-lg-7" ng-model-options="{updateOn: 'blur'}"
+                   id="workingExperience" placeholder="Enter working experience" formControlName="workingExperience">
+            <div *ngIf="(form.get('workingExperience').invalid && form.get('workingExperience').touched) || (form.get('workingExperience').pristine && isSubmitted)">
+                <small class="error-msg" *ngIf="form.get('workingExperience').errors?.['required']">
+                    Working experience field is required
+                </small>
+                <small class="error-msg" *ngIf="form.get('workingExperience').errors.notNumber">
+                    Entered value is not a number.<br>
+                    Allowed an integer or a floating-point number with "{{NumberOfDigitsAfter}}" digits after comma.
+                </small>
+                <small class="error-msg" *ngIf="form.get('workingExperience').errors.incorectNumerOfDigits">
+                    Entered incorrect number of digits. Allowed floating-point number with "{{NumberOfDigitsAfter}}"
+                    digits after comma.
+                </small>
+            </div>
+        </div>
+
+        <button class="btn btn-md btn-secondary" type="submit">Submit</button>
+        <button class="btn btn-md btn-secondary m-lg-2" type="button" (click)="resetForm()">Reset</button>
+
+    </form>
+</div>
